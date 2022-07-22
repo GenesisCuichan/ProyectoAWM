@@ -1,10 +1,12 @@
-import express from 'express';
-import Product from '../models/productModel.js';
-import data from '../data.js';
-import User from '../models/userModel.js';
+import express from 'express'; //Librería para Express
+import Product from '../models/productModel.js'; //Librería del componente Models - ProductModel
+import data from '../data.js'; //Librería de la Data
+import User from '../models/userModel.js'; //Librería del componente Models - UserModels
 
+//Llamada de Express
 const seedRouter = express.Router();
 
+//Petición Seed
 seedRouter.get('/', async (req, res) => {
   await Product.remove({});
   const createdProducts = await Product.insertMany(data.products);

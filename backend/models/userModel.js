@@ -1,5 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'; //Librería para MongoDB
 
+//Espquema para los usuarios
 const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },

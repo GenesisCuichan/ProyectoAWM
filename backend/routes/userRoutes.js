@@ -1,11 +1,13 @@
-import express from 'express';
-import bcrypt from 'bcryptjs';
-import expressAsyncHandler from 'express-async-handler';
-import User from '../models/userModel.js';
-import { isAuth, isAdmin, generateToken } from '../utils.js';
+import express from 'express'; //Librería para Express
+import bcrypt from 'bcryptjs'; //Cifrado Blowfish
+import expressAsyncHandler from 'express-async-handler'; //Librería para uso de Express de manera asincrónica
+import User from '../models/userModel.js'; //Librería del componente Models - UserModel
+import { isAuth, isAdmin, generateToken } from '../utils.js'; //Librería Utils
 
+//Llamada de Express
 const userRouter = express.Router();
 
+//Petición del Usuario
 userRouter.get(
   '/',
   isAuth,
@@ -16,6 +18,7 @@ userRouter.get(
   })
 );
 
+//Petición del Usuario por ID
 userRouter.get(
   '/:id',
   isAuth,
@@ -30,6 +33,7 @@ userRouter.get(
   })
 );
 
+//Obtención del Usuario por ID
 userRouter.put(
   '/:id',
   isAuth,
@@ -48,6 +52,7 @@ userRouter.put(
   })
 );
 
+//Eliminación del Usuario por ID
 userRouter.delete(
   '/:id',
   isAuth,
@@ -66,6 +71,8 @@ userRouter.delete(
     }
   })
 );
+
+//Respuesta del Usuario al ingresar al login
 userRouter.post(
   '/signin',
   expressAsyncHandler(async (req, res) => {
@@ -86,6 +93,7 @@ userRouter.post(
   })
 );
 
+//Respuesta del Usuario al crear un nuevo usuario
 userRouter.post(
   '/signup',
   expressAsyncHandler(async (req, res) => {
@@ -105,6 +113,7 @@ userRouter.post(
   })
 );
 
+//Obtención del perfil de Usuario
 userRouter.put(
   '/profile',
   isAuth,

@@ -1,6 +1,7 @@
-import jwt from 'jsonwebtoken';
-import mg from 'mailgun-js';
+import jwt from 'jsonwebtoken'; //Librería para la creación de tokens por medio del archivo JSON
+import mg from 'mailgun-js'; //Librería para el uso de correo electrónico
 
+//Componente Funcional para la Generación del Token
 export const generateToken = (user) => {
   return jwt.sign(
     {
@@ -16,11 +17,14 @@ export const generateToken = (user) => {
   );
 };
 
+//Función que autoriza la conexión del Token
 export const isAuth = (req, res, next) => {
   const authorization = req.headers.authorization;
+  //Si se autoriza el token
   if (authorization) {
     const token = authorization.slice(7, authorization.length); // Bearer XXXXXX
     jwt.verify(token, process.env.JWT_SECRET, (err, decode) => {
+      //Excepciones
       if (err) {
         res.status(401).send({ message: 'Invalid Token' });
       } else {
@@ -33,6 +37,7 @@ export const isAuth = (req, res, next) => {
   }
 };
 
+//Función que autoriza el Token para el Administrador
 export const isAdmin = (req, res, next) => {
   if (req.user && req.user.isAdmin) {
     next();
@@ -41,12 +46,14 @@ export const isAdmin = (req, res, next) => {
   }
 };
 
+//Función que genera el mail
 export const mailgun = () =>
   mg({
     apiKey: process.env.MAILGUN_API_KEY,
     domain: process.env.MAILGUN_DOMIAN,
   });
 
+  //Función para generar la orden de pago al correo electrónico
 export const payOrderEmailTemplate = (order) => {
   return `<h1>Thanks for shopping with us</h1>
   <p>

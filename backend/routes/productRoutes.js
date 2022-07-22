@@ -1,15 +1,18 @@
-import express from 'express';
-import expressAsyncHandler from 'express-async-handler';
-import Product from '../models/productModel.js';
-import { isAuth, isAdmin } from '../utils.js';
+import express from 'express'; //Librería para Express
+import expressAsyncHandler from 'express-async-handler'; //Librería para uso de Express de manera asincrónica
+import Product from '../models/productModel.js'; //Librería del componente Models - ProductModel
+import { isAuth, isAdmin } from '../utils.js'; //Librería de Utils
 
+//Llamada de Express
 const productRouter = express.Router();
 
+//Petición del Producto
 productRouter.get('/', async (req, res) => {
   const products = await Product.find();
   res.send(products);
 });
 
+//Respuesta del Producto
 productRouter.post(
   '/',
   isAuth,
@@ -18,7 +21,7 @@ productRouter.post(
     const newProduct = new Product({
       name: 'sample name ' + Date.now(),
       slug: 'sample-name-' + Date.now(),
-      image: '/images/p1.jpg',
+      image: '/images/cabestrillo_adulto.png',
       price: 0,
       category: 'sample category',
       brand: 'sample brand',
@@ -32,6 +35,7 @@ productRouter.post(
   })
 );
 
+//Obtención del Producto de acuerdo al ID
 productRouter.put(
   '/:id',
   isAuth,
@@ -57,6 +61,7 @@ productRouter.put(
   })
 );
 
+//Borrar Producto de acuerdo al ID
 productRouter.delete(
   '/:id',
   isAuth,
@@ -72,6 +77,7 @@ productRouter.delete(
   })
 );
 
+//Respuesta del Producto de acuerdo al ID
 productRouter.post(
   '/:id/reviews',
   isAuth,
@@ -108,8 +114,9 @@ productRouter.post(
   })
 );
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 3; //Tamaño de la página
 
+//Petición del Producto 
 productRouter.get(
   '/admin',
   isAuth,

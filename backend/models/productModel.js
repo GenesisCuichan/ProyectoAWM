@@ -1,5 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'; //Librería para MongoDB
 
+//Esquema para los usuarios
 const reviewSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
@@ -11,6 +12,7 @@ const reviewSchema = new mongoose.Schema(
   }
 );
 
+//Esquema para los productos
 const productSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, unique: true },
