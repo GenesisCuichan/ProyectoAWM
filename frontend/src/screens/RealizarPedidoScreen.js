@@ -26,7 +26,7 @@ const reducer = (state, action) => {
   }
 };
 
-export default function PlaceOrderScreen() {
+export default function RealizarPedidoScreen() {
   const navigate = useNavigate();
 
   const [{ loading }, dispatch] = useReducer(reducer, {
@@ -36,12 +36,12 @@ export default function PlaceOrderScreen() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
 
-  const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; // 123.2345 => 123.23
+  const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; // 123.2345 => 123.23  redondeamos a dos decimales
   cart.itemsPrice = round2(
     cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
   );
   cart.shippingPrice = cart.itemsPrice > 100 ? round2(0) : round2(10);
-  cart.taxPrice = round2(0.15 * cart.itemsPrice);
+  cart.taxPrice = round2(0.12 * cart.itemsPrice);
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
 
   const placeOrderHandler = async () => {
@@ -85,37 +85,37 @@ export default function PlaceOrderScreen() {
     <div>
       <PasosCheckout step1 step2 step3 step4></PasosCheckout>
       <Helmet>
-        <title>Preview Order</title>
+        <title>Vista previa de la orden</title>
       </Helmet>
-      <h1 className='my-3'>Preview Order</h1>
+      <h1 className='my-3'>Vista previa de la orden</h1>
       <Row>
         <Col md={8}>
           <Card className='mb-3'>
             <Card.Body>
-              <Card.Title>Shipping</Card.Title>
+              <Card.Title>Dirección de envío</Card.Title>
               <Card.Text>
-                <strong>Name:</strong> {cart.shippingAddress.fullName} <br />
-                <strong>Address: </strong> {cart.shippingAddress.address},
+                <strong>Nombre:</strong> {cart.shippingAddress.fullName} <br />
+                <strong>Dirección: </strong> {cart.shippingAddress.address},
                 {cart.shippingAddress.city}, {cart.shippingAddress.postalCode},
                 {cart.shippingAddress.country}
               </Card.Text>
-              <Link to='/shipping'>Edit</Link>
+              <Link to='/shipping'>Editar</Link>
             </Card.Body>
           </Card>
 
           <Card className='mb-3'>
             <Card.Body>
-              <Card.Title>Payment</Card.Title>
+              <Card.Title>Método de pago</Card.Title>
               <Card.Text>
-                <strong>Method:</strong> {cart.paymentMethod}
+                <strong>Método:</strong> {cart.paymentMethod}
               </Card.Text>
-              <Link to='/payment'>Edit</Link>
+              <Link to='/payment'>Editar</Link>
             </Card.Body>
           </Card>
 
           <Card className='mb-3'>
             <Card.Body>
-              <Card.Title>Items</Card.Title>
+              <Card.Title>Items de compra</Card.Title>
               <ListGroup variant='flush'>
                 {cart.cartItems.map((item) => (
                   <ListGroup.Item key={item._id}>
@@ -136,37 +136,37 @@ export default function PlaceOrderScreen() {
                   </ListGroup.Item>
                 ))}
               </ListGroup>
-              <Link to='/cart'>Edit</Link>
+              <Link to='/cart'>Editar</Link>
             </Card.Body>
           </Card>
         </Col>
         <Col md={4}>
           <Card>
             <Card.Body>
-              <Card.Title>Order Summary</Card.Title>
+              <Card.Title>Resumen del pedido</Card.Title>
               <ListGroup variant='flush'>
                 <ListGroup.Item>
                   <Row>
-                    <Col>Items</Col>
+                    <Col>Productos</Col>
                     <Col>${cart.itemsPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
-                    <Col>Shipping</Col>
+                    <Col>Envío</Col>
                     <Col>${cart.shippingPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
-                    <Col>Tax</Col>
+                    <Col>I.V.A.</Col>
                     <Col>${cart.taxPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
                     <Col>
-                      <strong> Order Total</strong>
+                      <strong> Total del pedido</strong>
                     </Col>
                     <Col>
                       <strong>${cart.totalPrice.toFixed(2)}</strong>
@@ -180,7 +180,7 @@ export default function PlaceOrderScreen() {
                       onClick={placeOrderHandler}
                       disabled={cart.cartItems.length === 0}
                     >
-                      Place Order
+                      Realizar pedido
                     </Button>
                   </div>
                   {loading && <MsgCarga></MsgCarga>}

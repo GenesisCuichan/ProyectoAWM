@@ -180,7 +180,7 @@ export default function OrderScreen() {
         }
       );
       dispatch({ type: "DELIVER_SUCCESS", payload: data });
-      toast.success("Order is delivered");
+      toast.success("La orden ha sido enviada");
     } catch (err) {
       toast.error(getError(err));
       dispatch({ type: "DELIVER_FAIL" });
@@ -194,21 +194,22 @@ export default function OrderScreen() {
   ) : (
     <div>
       <Helmet>
-        <title>Order {orderId}</title>
+        <title>Orden {orderId}</title>
       </Helmet>
-      <h1 className='my-3'>Order {orderId}</h1>
+      <h1 className='my-3'>Orden #{orderId}</h1>
       <Row>
         <Col md={8}>
           <Card className='mb-3'>
             <Card.Body>
-              <Card.Title>Shipping</Card.Title>
+              <Card.Title>Dirección de envío</Card.Title>
               <Card.Text>
-                <strong>Name:</strong> {order.shippingAddress.fullName} <br />
-                <strong>Address: </strong> {order.shippingAddress.address},
+                <strong>Cliente:</strong> {order.shippingAddress.fullName}{" "}
+                <br />
+                <strong>Dirección: </strong> {order.shippingAddress.address},
                 {order.shippingAddress.city}, {order.shippingAddress.postalCode}
                 ,{order.shippingAddress.country}
                 &nbsp;
-                {order.shippingAddress.location &&
+                {/*{order.shippingAddress.location &&
                   order.shippingAddress.location.lat && (
                     <a
                       target='_new'
@@ -216,36 +217,36 @@ export default function OrderScreen() {
                     >
                       Show On Map
                     </a>
-                  )}
+                  )}*/}
               </Card.Text>
               {order.isDelivered ? (
                 <MessageBox variant='success'>
                   Delivered at {order.deliveredAt}
                 </MessageBox>
               ) : (
-                <MessageBox variant='danger'>Not Delivered</MessageBox>
+                <MessageBox variant='danger'>No enviado</MessageBox>
               )}
             </Card.Body>
           </Card>
           <Card className='mb-3'>
             <Card.Body>
-              <Card.Title>Payment</Card.Title>
+              <Card.Title>Pago</Card.Title>
               <Card.Text>
-                <strong>Method:</strong> {order.paymentMethod}
+                <strong>Método de pago:</strong> {order.paymentMethod}
               </Card.Text>
               {order.isPaid ? (
                 <MessageBox variant='success'>
-                  Paid at {order.paidAt}
+                  Pagado el {order.paidAt}
                 </MessageBox>
               ) : (
-                <MessageBox variant='danger'>Not Paid</MessageBox>
+                <MessageBox variant='danger'>No pagado</MessageBox>
               )}
             </Card.Body>
           </Card>
 
           <Card className='mb-3'>
             <Card.Body>
-              <Card.Title>Items</Card.Title>
+              <Card.Title>Productos</Card.Title>
               <ListGroup variant='flush'>
                 {order.orderItems.map((item) => (
                   <ListGroup.Item key={item._id}>
@@ -272,30 +273,30 @@ export default function OrderScreen() {
         <Col md={4}>
           <Card className='mb-3'>
             <Card.Body>
-              <Card.Title>Order Summary</Card.Title>
+              <Card.Title>Resumen de la orden</Card.Title>
               <ListGroup variant='flush'>
                 <ListGroup.Item>
                   <Row>
-                    <Col>Items</Col>
+                    <Col>Productos</Col>
                     <Col>${order.itemsPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
-                    <Col>Shipping</Col>
+                    <Col>Dirección de envío</Col>
                     <Col>${order.shippingPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
-                    <Col>Tax</Col>
+                    <Col>I.V.A.</Col>
                     <Col>${order.taxPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
                     <Col>
-                      <strong> Order Total</strong>
+                      <strong> Total del pedido</strong>
                     </Col>
                     <Col>
                       <strong>${order.totalPrice.toFixed(2)}</strong>
@@ -323,7 +324,7 @@ export default function OrderScreen() {
                     {loadingDeliver && <MsgCarga></MsgCarga>}
                     <div className='d-grid'>
                       <Button type='button' onClick={deliverOrderHandler}>
-                        Deliver Order
+                        Enviar pedido
                       </Button>
                     </div>
                   </ListGroup.Item>

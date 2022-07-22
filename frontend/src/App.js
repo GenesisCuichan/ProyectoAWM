@@ -11,12 +11,12 @@ import Container from "react-bootstrap/Container";
 import { LinkContainer } from "react-router-bootstrap";
 import { useContext, useEffect, useState } from "react";
 import { Store } from "./Store";
-import CartScreen from "./screens/CartScreen";
+import CarritoScreen from "./screens/CarritoScreen";
 import SigninScreen from "./screens/SigninScreen";
 import DirEnvioScreen from "./screens/DirEnvioScreen";
 import SignupScreen from "./screens/SignupScreen";
 import PaymentMethodScreen from "./screens/PaymentMethodScreen";
-import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import RealizarPedidoScreen from "./screens/RealizarPedidoScreen";
 import OrderScreen from "./screens/OrderScreen";
 import OrderHistoryScreen from "./screens/OrderHistoryScreen";
 import ProfileScreen from "./screens/ProfileScreen";
@@ -172,7 +172,7 @@ function App() {
           <Container className='mt-3'>
             <Routes>
               <Route path='/product/:slug' element={<ProductoScreen />} />
-              <Route path='/cart' element={<CartScreen />} />
+              <Route path='/cart' element={<CarritoScreen />} />
               <Route path='/search' element={<SearchScreen />} />
               <Route path='/signin' element={<SigninScreen />} />
               <Route path='/signup' element={<SignupScreen />} />
@@ -192,7 +192,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route path='/placeorder' element={<PlaceOrderScreen />} />
+              <Route path='/placeorder' element={<RealizarPedidoScreen />} />
               <Route
                 path='/order/:id'
                 element={
