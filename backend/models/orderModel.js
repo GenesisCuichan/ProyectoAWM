@@ -1,7 +1,8 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'; //Librería para el uso de MongoDB
 
 const orderSchema = new mongoose.Schema(
   {
+    //Datos para el orden de Items
     orderItems: [
       {
         slug: { type: String, required: true },
@@ -16,6 +17,7 @@ const orderSchema = new mongoose.Schema(
         },
       },
     ],
+    //Datos para la información
     shippingAddress: {
       fullName: { type: String, required: true },
       address: { type: String, required: true },
@@ -31,6 +33,7 @@ const orderSchema = new mongoose.Schema(
         googleAddressId: String,
       },
     },
+    //Datos para el pago
     paymentMethod: { type: String, required: true },
     paymentResult: {
       id: String,
@@ -38,6 +41,7 @@ const orderSchema = new mongoose.Schema(
       update_time: String,
       email_address: String,
     },
+    //Datos para el precio
     itemsPrice: { type: Number, required: true },
     shippingPrice: { type: Number, required: true },
     taxPrice: { type: Number, required: true },
@@ -49,6 +53,7 @@ const orderSchema = new mongoose.Schema(
     deliveredAt: { type: Date },
   },
   {
+    //Datos para el tiempo
     timestamps: true,
   }
 );

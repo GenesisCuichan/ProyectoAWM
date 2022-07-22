@@ -1,12 +1,14 @@
-import express from 'express';
-import expressAsyncHandler from 'express-async-handler';
-import Order from '../models/orderModel.js';
-import User from '../models/userModel.js';
-import Product from '../models/productModel.js';
-import { isAuth, isAdmin, mailgun, payOrderEmailTemplate } from '../utils.js';
+import express from 'express'; //Librería para Express
+import expressAsyncHandler from 'express-async-handler'; //Librería para uso de Express de manera asincrónica
+import Order from '../models/orderModel.js'; //Librería del componente Models - OrderModel
+import User from '../models/userModel.js'; //Librería del componente Models - UserModel
+import Product from '../models/productModel.js'; //Librería del componente Models - ProductModel
+import { isAuth, isAdmin, mailgun, payOrderEmailTemplate } from '../utils.js'; //Librería de Utils
 
+//Llamada de Express
 const orderRouter = express.Router();
 
+//Petición de la orden 
 orderRouter.get(
   '/',
   isAuth,
@@ -17,6 +19,7 @@ orderRouter.get(
   })
 );
 
+//Respuesta de la orden
 orderRouter.post(
   '/',
   isAuth,
@@ -33,15 +36,17 @@ orderRouter.post(
     });
 
     const order = await newOrder.save();
-    res.status(201).send({ message: 'New Order Created', order });
+    res.status(201).send({ message: 'Nueva Orden Creada', order });
   })
 );
 
+//Petición de la Orden Acumulada
 orderRouter.get(
   '/summary',
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
+    //Agregar Orden
     const orders = await Order.aggregate([
       {
         $group: {
@@ -51,6 +56,7 @@ orderRouter.get(
         },
       },
     ]);
+    //Agregar Usuario
     const users = await User.aggregate([
       {
         $group: {
@@ -59,6 +65,7 @@ orderRouter.get(
         },
       },
     ]);
+    //Agregar pedidos diarios
     const dailyOrders = await Order.aggregate([
       {
         $group: {
@@ -69,6 +76,7 @@ orderRouter.get(
       },
       { $sort: { _id: 1 } },
     ]);
+    //Agregar categorías de Productos
     const productCategories = await Product.aggregate([
       {
         $group: {
@@ -81,6 +89,7 @@ orderRouter.get(
   })
 );
 
+//Petición de la Orden propia
 orderRouter.get(
   '/mine',
   isAuth,
@@ -90,6 +99,7 @@ orderRouter.get(
   })
 );
 
+//Petición de la orden del usuario
 orderRouter.get(
   '/:id',
   isAuth,
@@ -98,11 +108,12 @@ orderRouter.get(
     if (order) {
       res.send(order);
     } else {
-      res.status(404).send({ message: 'Order Not Found' });
+      res.status(404).send({ message: 'Orden No Encontrada' });
     }
   })
 );
 
+//Obtención de la orden del usuario
 orderRouter.put(
   '/:id/deliver',
   isAuth,
@@ -112,13 +123,14 @@ orderRouter.put(
       order.isDelivered = true;
       order.deliveredAt = Date.now();
       await order.save();
-      res.send({ message: 'Order Delivered' });
+      res.send({ message: 'Orden Entregada' });
     } else {
-      res.status(404).send({ message: 'Order Not Found' });
+      res.status(404).send({ message: 'Ordem No Encontrada' });
     }
   })
 );
 
+//Obtención de la orden de pago del usuario
 orderRouter.put(
   '/:id/pay',
   isAuth,
@@ -142,9 +154,9 @@ orderRouter.put(
         .messages()
         .send(
           {
-            from: 'Amazona <amazona@mg.yourdomain.com>',
+            from: 'Farmacia Vitality <far_vitality@mg.yourdomain.com>',
             to: `${order.user.name} <${order.user.email}>`,
-            subject: `New order ${order._id}`,
+            subject: `Nueva orden ${order._id}`,
             html: payOrderEmailTemplate(order),
           },
           (error, body) => {
@@ -156,13 +168,14 @@ orderRouter.put(
           }
         );
 
-      res.send({ message: 'Order Paid', order: updatedOrder });
+      res.send({ message: 'Orden Pagada', order: updatedOrder });
     } else {
-      res.status(404).send({ message: 'Order Not Found' });
+      res.status(404).send({ message: 'Orden No Encontrada' });
     }
   })
 );
 
+//Borrar Orden del Usuario
 orderRouter.delete(
   '/:id',
   isAuth,
@@ -171,9 +184,9 @@ orderRouter.delete(
     const order = await Order.findById(req.params.id);
     if (order) {
       await order.remove();
-      res.send({ message: 'Order Deleted' });
+      res.send({ message: 'Orden Borrada' });
     } else {
-      res.status(404).send({ message: 'Order Not Found' });
+      res.status(404).send({ message: 'Orden No Encontrada' });
     }
   })
 );

@@ -1,13 +1,15 @@
-import express from 'express';
-import multer from 'multer';
-import { v2 as cloudinary } from 'cloudinary';
-import streamifier from 'streamifier';
-import { isAdmin, isAuth } from '../utils.js';
+import express from 'express'; //Librería para Express
+import multer from 'multer'; //Librería que hace que sea fácil manipular este multipart/form-data cuando los usuarios suben archivos
+import { v2 as cloudinary } from 'cloudinary'; //Librería para cargar imágenes únicas
+import streamifier from 'streamifier'; //Librería que convierte un buffer a un stream legible
+import { isAdmin, isAuth } from '../utils.js'; //Librería de Utils
 
+//Carga de la librería multer
 const upload = multer();
-
+//Llamada de Express
 const uploadRouter = express.Router();
 
+//Respuesta a la Actualización
 uploadRouter.post(
   '/',
   isAuth,
