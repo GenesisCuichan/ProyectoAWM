@@ -43,7 +43,7 @@ export default function MetodoPagoScreen() {
               type='radio'
               id='Efectivo'
               label='Efectivo al momento de la entrega'
-              value='Efectivo contraentrega'
+              value='Efectivo'
               checked={paymentMethodName === "Efectivo"}
               onChange={(e) => setPaymentMethod(e.target.value)}
             />
