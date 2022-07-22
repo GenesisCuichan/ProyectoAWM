@@ -1,44 +1,45 @@
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import HomeScreen from "./screens/HomeScreen";
-import ProductoScreen from "./screens/ProductoScreen";
-import Navbar from "react-bootstrap/Navbar";
-import Badge from "react-bootstrap/Badge";
-import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import Container from "react-bootstrap/Container";
-import { LinkContainer } from "react-router-bootstrap";
-import { useContext, useEffect, useState } from "react";
-import { Store } from "./Store";
-import CarritoScreen from "./screens/CarritoScreen";
-import SigninScreen from "./screens/SigninScreen";
-import DirEnvioScreen from "./screens/DirEnvioScreen";
-import SignupScreen from "./screens/SignupScreen";
-import MetodoPagoScreen from "./screens/MetodoPagoScreen";
-import RealizarPedidoScreen from "./screens/RealizarPedidoScreen";
-import OrderScreen from "./screens/OrderScreen";
-import HistorialPedidosScreen from "./screens/HistorialPedidosScreen";
-import PerfilUsuarioScreen from "./screens/PerfilUsuarioScreen";
-import Button from "react-bootstrap/Button";
-import { getError } from "./utils";
-import axios from "axios";
-import BusquedaBox from "./components/BusquedaBox";
-import BusquedaScreen from "./screens/BusquedaScreen";
-import ProtectedRoute from "./components/ProtectedRoute";
-import DashboardScreen from "./screens/DashboardScreen";
-import AdminRutas from "./components/AdminRutas";
-import ListaProductosScreen from "./screens/ListaProductosScreen";
-import EditarProductoScreen from "./screens/EditarProductoScreen";
-import OrdenesCompraScreen from "./screens/OrdenesCompraScreen";
-import ListaUsuarioScreen from "./screens/ListaUsuarioScreen";
-import UserEditScreen from "./screens/UserEditScreen";
-import { Footer } from "./components/Footer";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom"; // Importar libreria para navegacion entre paginas
+import { toast, ToastContainer } from "react-toastify"; // Libreria para notificaciones
+import "react-toastify/dist/ReactToastify.css"; // Libreria para dar estilos
+import HomeScreen from "./screens/HomeScreen"; // Importacion de la pagina principal 
+import ProductoScreen from "./screens/ProductoScreen"; // Importacion de la pagina de productos
+import Navbar from "react-bootstrap/Navbar"; // Importacion para barra de navegacion
+import Badge from "react-bootstrap/Badge"; // Importacion para insginias y conteo
+import Nav from "react-bootstrap/Nav"; // Libreria para navegacion
+import NavDropdown from "react-bootstrap/NavDropdown"; // Lista de enlaces
+import Container from "react-bootstrap/Container"; // Centrar contenido
+import { LinkContainer } from "react-router-bootstrap"; // Libreria bootsrap
+import { useContext, useEffect, useState } from "react"; // Libreria React
+import { Store } from "./Store"; // Importar store
+import CarritoScreen from "./screens/CarritoScreen"; // Importar pantalla de carrito
+import SigninScreen from "./screens/SigninScreen"; // Impotar pantallas de signin
+import DirEnvioScreen from "./screens/DirEnvioScreen"; // Importar pantalla de envio
+import SignupScreen from "./screens/SignupScreen"; // Importar pantallas de sigup
+import MetodoPagoScreen from "./screens/MetodoPagoScreen"; // Importar pantalla Metodo de pagos
+import RealizarPedidoScreen from "./screens/RealizarPedidoScreen"; // Importar pantalla de pedidos
+import OrderScreen from "./screens/OrderScreen"; // Importar pantalla de ordenes
+import HistorialPedidosScreen from "./screens/HistorialPedidosScreen"; // Importar pantalla de historial
+import PerfilUsuarioScreen from "./screens/PerfilUsuarioScreen"; // Importar pantalla de pefil de usuarios
+import Button from "react-bootstrap/Button"; //Importar diseño de botones
+import { getError } from "./utils"; // Importar utils
+import axios from "axios"; // Importar axios
+import BusquedaBox from "./components/BusquedaBox"; // Importar busquedabox
+import BusquedaScreen from "./screens/BusquedaScreen"; // Importar pantalla de busqeuda
+import ProtectedRoute from "./components/ProtectedRoute"; // Importar ProtectedRoute
+import DashboardScreen from "./screens/DashboardScreen"; // Importar pantalla de dashboard
+import AdminRutas from "./components/AdminRutas"; // importar AdminRutas
+import ListaProductosScreen from "./screens/ListaProductosScreen"; // Importat pantalla de productos
+import EditarProductoScreen from "./screens/EditarProductoScreen"; // Importar pantalla de editar products
+import OrdenesCompraScreen from "./screens/OrdenesCompraScreen";// Importar pantalla de ordenes
+import ListaUsuarioScreen from "./screens/ListaUsuarioScreen"; //Importar pantalla de lista de usiarios
+import UserEditScreen from "./screens/UserEditScreen"; // Importar pantalla de usuarios
+import { Footer } from "./components/Footer"; // importar footer
 
 function App() {
-  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { state, dispatch: ctxDispatch } = useContext(Store); 
   const { fullBox, cart, userInfo } = state;
 
+  // Cambia el estado al momento que un usuario sale de la cuenta
   const signoutHandler = () => {
     ctxDispatch({ type: "USER_SIGNOUT" });
     localStorage.removeItem("userInfo");
@@ -48,7 +49,7 @@ function App() {
   };
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [categories, setCategories] = useState([]);
-
+// Envia los productos por cateogrias
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -73,7 +74,8 @@ function App() {
             : "site-container d-flex flex-column"
         }
       >
-        <ToastContainer position='bottom-center' limit={1} />
+        
+        <ToastContainer position='bottom-center' limit={1} /> 
         <header>
           <Navbar bg='primary' variant='dark' expand='lg'>
             <Container>

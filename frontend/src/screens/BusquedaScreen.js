@@ -4,15 +4,15 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios"; // Libreria de axios
 import { toast } from "react-toastify"; // Libreri para agregar notificaciones
 import { getError } from "../utils"; // Libreria utils
-import { Helmet } from "react-helmet-async"; //
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Rating from "../components/Rating";
-import MsgCarga from "../components/MsgCarga";
-import MessageBox from "../components/MessageBox";
-import Button from "react-bootstrap/Button";
-import Producto from "../components/Producto";
-import LinkContainer from "react-router-bootstrap/LinkContainer";
+import { Helmet } from "react-helmet-async"; //Libreria que administra etiquetas
+import Row from "react-bootstrap/Row"; // Libreria para fijacion de filas
+import Col from "react-bootstrap/Col"; //  Libreri para fijacion de row
+import Rating from "../components/Rating";// Importacion de Rating
+import MsgCarga from "../components/MsgCarga"; // Importacion de MsgCarga
+import MessageBox from "../components/MessageBox"; // Impotacion de messagebox
+import Button from "react-bootstrap/Button"; //Libreria para estilo de botones
+import Producto from "../components/Producto"; // Importacion de Producto
+import LinkContainer from "react-router-bootstrap/LinkContainer"; //Libreria para enlaces
 
 const reducer = (state, action) => {
   switch (action.type) {
