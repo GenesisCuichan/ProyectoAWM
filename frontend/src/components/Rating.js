@@ -1,3 +1,4 @@
+//Componente funcional que permite dar calificacion a los productos 
 function Rating(props) {
   const { rating, numReviews, caption } = props;
   return (

@@ -14,6 +14,7 @@ import Button from "react-bootstrap/Button"; //Libreria para estilo de botones
 import Producto from "../components/Producto"; // Importacion de Producto
 import LinkContainer from "react-router-bootstrap/LinkContainer"; //Libreria para enlaces
 
+// Pnatalla de busqueda de producto
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":

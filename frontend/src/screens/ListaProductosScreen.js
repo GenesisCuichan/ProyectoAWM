@@ -10,6 +10,7 @@ import MsgCarga from "../components/MsgCarga";
 import MessageBox from "../components/MessageBox";
 import { getError } from "../utils";
 
+// Pantalla de Lista de prodcutos
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":

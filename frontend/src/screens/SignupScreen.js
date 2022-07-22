@@ -9,6 +9,7 @@ import { Store } from '../Store';
 import { toast } from 'react-toastify';
 import { getError } from '../utils';
 
+// Pantalla sin inicio de la cuenta
 export default function SignupScreen() {
   const navigate = useNavigate();
   const { search } = useLocation();

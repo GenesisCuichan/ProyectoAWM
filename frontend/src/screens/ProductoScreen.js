@@ -17,6 +17,7 @@ import { Store } from "../Store";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { toast } from "react-toastify";
 
+// Pantalla de producto
 const reducer = (state, action) => {
   switch (action.type) {
     case "REFRESH_PRODUCT":

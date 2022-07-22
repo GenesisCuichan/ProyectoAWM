@@ -12,6 +12,7 @@ import MsgCarga from "../components/MsgCarga";
 import MessageBox from "../components/MessageBox";
 import Button from "react-bootstrap/Button";
 
+// Pantalla de editar producto
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":

@@ -1,7 +1,7 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer } from 'react'; // Importar reacr
 
-export const Store = createContext();
-
+export const Store = createContext();  
+// Inicializa el estado
 const initialState = {
   fullBox: false,
   userInfo: localStorage.getItem('userInfo')
@@ -20,6 +20,8 @@ const initialState = {
       : [],
   },
 };
+      // agregar al carrito
+
 function reducer(state, action) {
   switch (action.type) {
     case 'SET_FULLBOX_ON':
@@ -28,7 +30,6 @@ function reducer(state, action) {
       return { ...state, fullBox: false };
 
     case 'CART_ADD_ITEM':
-      // agregar al carrito
       const newItem = action.payload;
       const existItem = state.cart.cartItems.find(
         (item) => item._id === newItem._id

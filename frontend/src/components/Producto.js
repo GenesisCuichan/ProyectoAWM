@@ -1,11 +1,12 @@
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
-import Rating from "./Rating";
-import axios from "axios";
-import { useContext } from "react";
-import { Store } from "../Store";
+import Card from "react-bootstrap/Card"; //Diseño de cartas
+import Button from "react-bootstrap/Button";// Diseño de botones
+import { Link } from "react-router-dom"; //Importar libreria para navegacion de paginas
+import Rating from "./Rating";//Usuario envie la calificacion del producto
+import axios from "axios";// importar axios
+import { useContext } from "react"; // Importar React
+import { Store } from "../Store"; // Importar store
 
+// se observa las cartas de los productos
 function Producto(props) {
   const { product } = props;
 
@@ -13,7 +14,7 @@ function Producto(props) {
   const {
     cart: { cartItems },
   } = state;
-
+// Aagrega la carta y selecciona el producto correspondiente
   const addToCartHandler = async (item) => {
     const existItem = cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
@@ -29,7 +30,7 @@ function Producto(props) {
       payload: { ...item, quantity },
     });
   };
-
+//Retorna el nombre e imagen del producto para agregar al carrito
   return (
     <Card>
       <Link to={`/product/${product.slug}`}>

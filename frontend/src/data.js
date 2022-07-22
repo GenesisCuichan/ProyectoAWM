@@ -1,3 +1,4 @@
+// Informacion de losproductos
 const data = {
   products: [
     {

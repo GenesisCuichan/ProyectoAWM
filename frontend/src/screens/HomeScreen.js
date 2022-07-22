@@ -9,6 +9,7 @@ import MsgCarga from "../components/MsgCarga";
 import MessageBox from "../components/MessageBox";
 // import data from '../data';
 
+// Pantalla del home de la pagina
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":

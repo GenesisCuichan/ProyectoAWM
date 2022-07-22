@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Store } from "../Store";
 import PasosCheckout from "../components/PasosCheckout";
 
+// Pnatalla de la direccion de enbio
 export default function DirEnvioScreen() {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
