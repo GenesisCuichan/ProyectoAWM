@@ -37,7 +37,7 @@ const reducer = (state, action) => {
       return state;
   }
 };
-export default function UserListScreen() {
+export default function ListaUsuarioScreen() {
   const navigate = useNavigate();
   const [{ loading, error, users, loadingDelete, successDelete }, dispatch] =
     useReducer(reducer, {
@@ -92,7 +92,7 @@ export default function UserListScreen() {
       <Helmet>
         <title>Users</title>
       </Helmet>
-      <h1>Users</h1>
+      <h1>USUARIOS</h1>
 
       {loadingDelete && <MsgCarga></MsgCarga>}
       {loading ? (
@@ -104,10 +104,10 @@ export default function UserListScreen() {
           <thead>
             <tr>
               <th>ID</th>
-              <th>NAME</th>
+              <th>NOMBRE</th>
               <th>EMAIL</th>
-              <th>IS ADMIN</th>
-              <th>ACTIONS</th>
+              <th>ADMIN</th>
+              <th>ACCIONES</th>
             </tr>
           </thead>
           <tbody>
@@ -123,7 +123,7 @@ export default function UserListScreen() {
                     variant='light'
                     onClick={() => navigate(`/admin/user/${user._id}`)}
                   >
-                    Edit
+                    Editar
                   </Button>
                   &nbsp;
                   <Button
@@ -131,7 +131,7 @@ export default function UserListScreen() {
                     variant='light'
                     onClick={() => deleteHandler(user)}
                   >
-                    Delete
+                    Eliminar
                   </Button>
                 </td>
               </tr>

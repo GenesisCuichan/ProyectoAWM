@@ -36,15 +36,15 @@ const reducer = (state, action) => {
 
 const prices = [
   {
-    name: "$1 to $50",
-    value: "1-50",
+    name: "$1 a $29",
+    value: "1-29",
   },
   {
-    name: "$51 to $200",
-    value: "51-200",
+    name: "$30 a $200",
+    value: "30-200",
   },
   {
-    name: "$201 to $1000",
+    name: "$201 a $1000",
     value: "201-1000",
   },
 ];
@@ -71,7 +71,7 @@ export const ratings = [
   },
 ];
 
-export default function SearchScreen() {
+export default function BusquedaScreen() {
   const navigate = useNavigate();
   const { search } = useLocation();
   const sp = new URLSearchParams(search); // /search?category=Shirts
@@ -134,7 +134,7 @@ export default function SearchScreen() {
       </Helmet>
       <Row>
         <Col md={3}>
-          <h3>Department</h3>
+          <h3>Categoría</h3>
           <div>
             <ul>
               <li>
@@ -142,7 +142,7 @@ export default function SearchScreen() {
                   className={"all" === category ? "text-bold" : ""}
                   to={getFilterUrl({ category: "all" })}
                 >
-                  Any
+                  Todas
                 </Link>
               </li>
               {categories.map((c) => (
@@ -158,14 +158,14 @@ export default function SearchScreen() {
             </ul>
           </div>
           <div>
-            <h3>Price</h3>
+            <h3>Precio</h3>
             <ul>
               <li>
                 <Link
                   className={"all" === price ? "text-bold" : ""}
                   to={getFilterUrl({ price: "all" })}
                 >
-                  Any
+                  Cualquier precio
                 </Link>
               </li>
               {prices.map((p) => (
@@ -181,7 +181,7 @@ export default function SearchScreen() {
             </ul>
           </div>
           <div>
-            <h3>Avg. Customer Review</h3>
+            <h3>Promedio de calificación</h3>
             <ul>
               {ratings.map((r) => (
                 <li key={r.name}>
@@ -189,7 +189,7 @@ export default function SearchScreen() {
                     to={getFilterUrl({ rating: r.rating })}
                     className={`${r.rating}` === `${rating}` ? "text-bold" : ""}
                   >
-                    <Rating caption={" & up"} rating={r.rating}></Rating>
+                    <Rating caption={" & más"} rating={r.rating}></Rating>
                   </Link>
                 </li>
               ))}
@@ -233,22 +233,24 @@ export default function SearchScreen() {
                   </div>
                 </Col>
                 <Col className='text-end'>
-                  Sort by{" "}
+                  Ordenar por{" "}
                   <select
                     value={order}
                     onChange={(e) => {
                       navigate(getFilterUrl({ order: e.target.value }));
                     }}
                   >
-                    <option value='newest'>Newest Arrivals</option>
-                    <option value='lowest'>Price: Low to High</option>
-                    <option value='highest'>Price: High to Low</option>
-                    <option value='toprated'>Avg. Customer Reviews</option>
+                    <option value='newest'>Nuevos productos</option>
+                    <option value='lowest'>Precio: Más bajo a más alto</option>
+                    <option value='highest'>Precio: Más alto a más bajo</option>
+                    <option value='toprated'>
+                      Promedio de calificaciones de clientes
+                    </option>
                   </select>
                 </Col>
               </Row>
               {products.length === 0 && (
-                <MessageBox>No Product Found</MessageBox>
+                <MessageBox>Prodcutos no encontrados</MessageBox>
               )}
 
               <Row>

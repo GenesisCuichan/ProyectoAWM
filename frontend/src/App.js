@@ -15,23 +15,23 @@ import CarritoScreen from "./screens/CarritoScreen";
 import SigninScreen from "./screens/SigninScreen";
 import DirEnvioScreen from "./screens/DirEnvioScreen";
 import SignupScreen from "./screens/SignupScreen";
-import PaymentMethodScreen from "./screens/PaymentMethodScreen";
+import MetodoPagoScreen from "./screens/MetodoPagoScreen";
 import RealizarPedidoScreen from "./screens/RealizarPedidoScreen";
 import OrderScreen from "./screens/OrderScreen";
-import OrderHistoryScreen from "./screens/OrderHistoryScreen";
+import HistorialPedidosScreen from "./screens/HistorialPedidosScreen";
 import PerfilUsuarioScreen from "./screens/PerfilUsuarioScreen";
 import Button from "react-bootstrap/Button";
 import { getError } from "./utils";
 import axios from "axios";
 import BusquedaBox from "./components/BusquedaBox";
-import SearchScreen from "./screens/SearchScreen";
+import BusquedaScreen from "./screens/BusquedaScreen";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DashboardScreen from "./screens/DashboardScreen";
 import AdminRutas from "./components/AdminRutas";
-import ProductListScreen from "./screens/ProductListScreen";
+import ListaProductosScreen from "./screens/ListaProductosScreen";
 import EditarProductoScreen from "./screens/EditarProductoScreen";
-import OrderListScreen from "./screens/OrderListScreen";
-import UserListScreen from "./screens/UserListScreen";
+import OrdenesCompraScreen from "./screens/OrdenesCompraScreen";
+import ListaUsuarioScreen from "./screens/ListaUsuarioScreen";
 import UserEditScreen from "./screens/UserEditScreen";
 import { Footer } from "./components/Footer";
 
@@ -172,7 +172,7 @@ function App() {
             <Routes>
               <Route path='/product/:slug' element={<ProductoScreen />} />
               <Route path='/cart' element={<CarritoScreen />} />
-              <Route path='/search' element={<SearchScreen />} />
+              <Route path='/search' element={<BusquedaScreen />} />
               <Route path='/signin' element={<SigninScreen />} />
               <Route path='/signup' element={<SignupScreen />} />
               <Route
@@ -196,12 +196,12 @@ function App() {
                 path='/orderhistory'
                 element={
                   <ProtectedRoute>
-                    <OrderHistoryScreen />
+                    <HistorialPedidosScreen />
                   </ProtectedRoute>
                 }
               ></Route>
               <Route path='/shipping' element={<DirEnvioScreen />}></Route>
-              <Route path='/payment' element={<PaymentMethodScreen />}></Route>
+              <Route path='/payment' element={<MetodoPagoScreen />}></Route>
               {/* Admin Routes */}
               <Route
                 path='/admin/dashboard'
@@ -215,7 +215,7 @@ function App() {
                 path='/admin/orders'
                 element={
                   <AdminRutas>
-                    <OrderListScreen />
+                    <OrdenesCompraScreen />
                   </AdminRutas>
                 }
               ></Route>
@@ -223,7 +223,7 @@ function App() {
                 path='/admin/users'
                 element={
                   <AdminRutas>
-                    <UserListScreen />
+                    <ListaUsuarioScreen />
                   </AdminRutas>
                 }
               ></Route>
@@ -231,7 +231,7 @@ function App() {
                 path='/admin/products'
                 element={
                   <AdminRutas>
-                    <ProductListScreen />
+                    <ListaProductosScreen />
                   </AdminRutas>
                 }
               ></Route>

@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import PasosCheckout from "../components/PasosCheckout";
 import { Store } from "../Store";
 
-export default function PaymentMethodScreen() {
+export default function MetodoPagoScreen() {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
@@ -33,9 +33,9 @@ export default function PaymentMethodScreen() {
       <PasosCheckout step1 step2 step3></PasosCheckout>
       <div className='container small-container'>
         <Helmet>
-          <title>Payment Method</title>
+          <title>Método de pago</title>
         </Helmet>
-        <h1 className='my-3'>Payment Method</h1>
+        <h1 className='my-3'>Método de pago</h1>
         <Form onSubmit={submitHandler}>
           <div className='mb-3'>
             <Form.Check
@@ -58,7 +58,7 @@ export default function PaymentMethodScreen() {
             />
           </div>
           <div className='mb-3'>
-            <Button type='submit'>Continue</Button>
+            <Button type='submit'>Continuar</Button>
           </div>
         </Form>
       </div>

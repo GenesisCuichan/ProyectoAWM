@@ -21,7 +21,7 @@ const reducer = (state, action) => {
   }
 };
 
-export default function OrderHistoryScreen() {
+export default function HistorialPedidosScreen() {
   const { state } = useContext(Store);
   const { userInfo } = state;
   const navigate = useNavigate();
@@ -55,7 +55,9 @@ export default function OrderHistoryScreen() {
         <title>Historial de pedidos</title>
       </Helmet>
 
-      <h1>Historial de pedidos</h1>
+      <h1>
+        <strong>Historial de pedidos</strong>
+      </h1>
       {loading ? (
         <MsgCarga></MsgCarga>
       ) : error ? (
