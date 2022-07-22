@@ -10,7 +10,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { toast } from "react-toastify";
 import { getError } from "../utils";
 import { Store } from "../Store";
-import CheckoutSteps from "../components/CheckoutSteps";
+import PasosCheckout from "../components/PasosCheckout";
 import MsgCarga from "../components/MsgCarga";
 
 const reducer = (state, action) => {
@@ -83,7 +83,7 @@ export default function PlaceOrderScreen() {
 
   return (
     <div>
-      <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
+      <PasosCheckout step1 step2 step3 step4></PasosCheckout>
       <Helmet>
         <title>Preview Order</title>
       </Helmet>

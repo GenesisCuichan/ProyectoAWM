@@ -2,7 +2,7 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HomeScreen from "./screens/HomeScreen";
-import ProductScreen from "./screens/ProductScreen";
+import ProductoScreen from "./screens/ProductoScreen";
 import Navbar from "react-bootstrap/Navbar";
 import Badge from "react-bootstrap/Badge";
 import Nav from "react-bootstrap/Nav";
@@ -13,7 +13,7 @@ import { useContext, useEffect, useState } from "react";
 import { Store } from "./Store";
 import CartScreen from "./screens/CartScreen";
 import SigninScreen from "./screens/SigninScreen";
-import ShippingAddressScreen from "./screens/ShippingAddressScreen";
+import DirEnvioScreen from "./screens/DirEnvioScreen";
 import SignupScreen from "./screens/SignupScreen";
 import PaymentMethodScreen from "./screens/PaymentMethodScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
@@ -27,7 +27,7 @@ import BusquedaBox from "./components/BusquedaBox";
 import SearchScreen from "./screens/SearchScreen";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DashboardScreen from "./screens/DashboardScreen";
-import AdminRoute from "./components/AdminRoute";
+import AdminRutas from "./components/AdminRutas";
 import ProductListScreen from "./screens/ProductListScreen";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import OrderListScreen from "./screens/OrderListScreen";
@@ -171,7 +171,7 @@ function App() {
         <main>
           <Container className='mt-3'>
             <Routes>
-              <Route path='/product/:slug' element={<ProductScreen />} />
+              <Route path='/product/:slug' element={<ProductoScreen />} />
               <Route path='/cart' element={<CartScreen />} />
               <Route path='/search' element={<SearchScreen />} />
               <Route path='/signin' element={<SigninScreen />} />
@@ -209,58 +209,55 @@ function App() {
                   </ProtectedRoute>
                 }
               ></Route>
-              <Route
-                path='/shipping'
-                element={<ShippingAddressScreen />}
-              ></Route>
+              <Route path='/shipping' element={<DirEnvioScreen />}></Route>
               <Route path='/payment' element={<PaymentMethodScreen />}></Route>
               {/* Admin Routes */}
               <Route
                 path='/admin/dashboard'
                 element={
-                  <AdminRoute>
+                  <AdminRutas>
                     <DashboardScreen />
-                  </AdminRoute>
+                  </AdminRutas>
                 }
               ></Route>
               <Route
                 path='/admin/orders'
                 element={
-                  <AdminRoute>
+                  <AdminRutas>
                     <OrderListScreen />
-                  </AdminRoute>
+                  </AdminRutas>
                 }
               ></Route>
               <Route
                 path='/admin/users'
                 element={
-                  <AdminRoute>
+                  <AdminRutas>
                     <UserListScreen />
-                  </AdminRoute>
+                  </AdminRutas>
                 }
               ></Route>
               <Route
                 path='/admin/products'
                 element={
-                  <AdminRoute>
+                  <AdminRutas>
                     <ProductListScreen />
-                  </AdminRoute>
+                  </AdminRutas>
                 }
               ></Route>
               <Route
                 path='/admin/product/:id'
                 element={
-                  <AdminRoute>
+                  <AdminRutas>
                     <ProductEditScreen />
-                  </AdminRoute>
+                  </AdminRutas>
                 }
               ></Route>
               <Route
                 path='/admin/user/:id'
                 element={
-                  <AdminRoute>
+                  <AdminRutas>
                     <UserEditScreen />
-                  </AdminRoute>
+                  </AdminRutas>
                 }
               ></Route>
 

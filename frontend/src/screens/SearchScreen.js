@@ -10,7 +10,7 @@ import Rating from "../components/Rating";
 import MsgCarga from "../components/MsgCarga";
 import MessageBox from "../components/MessageBox";
 import Button from "react-bootstrap/Button";
-import Product from "../components/Product";
+import Producto from "../components/Producto";
 import LinkContainer from "react-router-bootstrap/LinkContainer";
 
 const reducer = (state, action) => {
@@ -254,7 +254,7 @@ export default function SearchScreen() {
               <Row>
                 {products.map((product) => (
                   <Col sm={6} lg={4} className='mb-3' key={product._id}>
-                    <Product product={product}></Product>
+                    <Producto product={product}></Producto>
                   </Col>
                 ))}
               </Row>

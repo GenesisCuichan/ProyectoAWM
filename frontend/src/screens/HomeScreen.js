@@ -1,9 +1,9 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer } from "react";
 import axios from "axios";
 import logger from "use-reducer-logger";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Product from "../components/Product";
+import Producto from "../components/Producto";
 import { Helmet } from "react-helmet-async";
 import MsgCarga from "../components/MsgCarga";
 import MessageBox from "../components/MessageBox";
@@ -46,9 +46,11 @@ function HomeScreen() {
   return (
     <div>
       <Helmet>
-        <title>Farmacia Vitality</title>
+        <title> Farmacia Vitality</title>
       </Helmet>
-      <h1>Productos</h1>
+      <h1>
+        <strong>Productos</strong>
+      </h1>
       <div className='products'>
         {loading ? (
           <MsgCarga />
@@ -58,7 +60,7 @@ function HomeScreen() {
           <Row>
             {products.map((product) => (
               <Col key={product.slug} sm={6} md={4} lg={3} className='mb-3'>
-                <Product product={product}></Product>
+                <Producto product={product}></Producto>
               </Col>
             ))}
           </Row>
