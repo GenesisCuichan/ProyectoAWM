@@ -34,6 +34,7 @@ import OrderListScreen from "./screens/OrderListScreen";
 import UserListScreen from "./screens/UserListScreen";
 import UserEditScreen from "./screens/UserEditScreen";
 import MapScreen from "./screens/MapScreen";
+import { Footer } from "./components/Footer";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -268,7 +269,7 @@ function App() {
           </Container>
         </main>
         <footer>
-          <div className='text-center'>All rights reserved</div>
+          <Footer />
         </footer>
       </div>
     </BrowserRouter>
