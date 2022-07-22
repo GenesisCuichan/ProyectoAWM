@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import PasosCheckout from "../components/PasosCheckout";
 import { Store } from "../Store";
 
+// Pantalla de metodos de pago
 export default function MetodoPagoScreen() {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);

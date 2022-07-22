@@ -1,6 +1,7 @@
-import React from "react";
+import React from "react"; // Importar React
 import { CDBFooter } from "cdbreact";
 
+// Pie de la pagina
 export const Footer = () => {
   return (
     <CDBFooter className='shadow'>

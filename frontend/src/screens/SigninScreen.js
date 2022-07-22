@@ -9,6 +9,7 @@ import { Store } from "../Store";
 import { toast } from "react-toastify";
 import { getError } from "../utils";
 
+// Pantalla de ingreso a la cuenta de la farmacia
 export default function SigninScreen() {
   const navigate = useNavigate();
   const { search } = useLocation();

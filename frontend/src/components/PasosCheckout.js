@@ -1,7 +1,8 @@
-import React from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import React from "react"; // Importa react
+import Row from "react-bootstrap/Row"; // Alineacion de filas
+import Col from "react-bootstrap/Col"; // Alineacion de columnas
 
+//Chequeo de informacion de pago
 export default function PasosCheckout(props) {
   return (
     <Row className='checkout-steps'>
