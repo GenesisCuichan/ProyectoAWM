@@ -125,7 +125,7 @@ orderRouter.put(
       await order.save();
       res.send({ message: 'Orden Entregada' });
     } else {
-      res.status(404).send({ message: 'Ordem No Encontrada' });
+      res.status(404).send({ message: 'Orden No Encontrada' });
     }
   })
 );
