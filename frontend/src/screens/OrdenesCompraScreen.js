@@ -90,7 +90,7 @@ export default function OrdenesCompraScreen() {
   return (
     <div>
       <Helmet>
-        <title>Orders</title>
+        <title>Ordenes</title>
       </Helmet>
       <h1>Ordenes de compra</h1>
       {loadingDelete && <MsgCarga></MsgCarga>}

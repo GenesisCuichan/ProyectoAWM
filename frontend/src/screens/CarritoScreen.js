@@ -116,7 +116,7 @@ export default function CarritoScreen() {
                       onClick={checkoutHandler}
                       disabled={cartItems.length === 0}
                     >
-                      Proceder al pago
+                      Dirigirse al pago
                     </Button>
                   </div>
                 </ListGroup.Item>

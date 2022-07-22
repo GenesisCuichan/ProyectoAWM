@@ -75,7 +75,7 @@ function ProductoScreen() {
     const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(`/api/products/${product._id}`);
     if (data.countInStock < quantity) {
-      window.alert("Sorry. Product is out of stock");
+      window.alert("Lo sentimos! Este producto no se encuentra disponible");
       return;
     }
     ctxDispatch({
@@ -88,7 +88,7 @@ function ProductoScreen() {
   const submitHandler = async (e) => {
     e.preventDefault();
     if (!comment || !rating) {
-      toast.error("Please enter comment and rating");
+      toast.error("Por favor, ingresa un comentario y una calificación!");
       return;
     }
     try {
@@ -103,7 +103,7 @@ function ProductoScreen() {
       dispatch({
         type: "CREATE_SUCCESS",
       });
-      toast.success("Review submitted successfully");
+      toast.success("Calificación guardada con éxito");
       product.reviews.unshift(data.review);
       product.numReviews = data.numReviews;
       product.rating = data.rating;
@@ -269,7 +269,7 @@ function ProductoScreen() {
             <MessageBox>
               Por favor{" "}
               <Link to={`/signin?redirect=/product/${product.slug}`}>
-                Inicia sesión
+                Iniciar sesión
               </Link>{" "}
               para escribir una opinion de este producto
             </MessageBox>

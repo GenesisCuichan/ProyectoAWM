@@ -130,7 +130,7 @@ export default function BusquedaScreen() {
   return (
     <div>
       <Helmet>
-        <title>Search Products</title>
+        <title>Buscar Productos</title>
       </Helmet>
       <Row>
         <Col md={3}>
@@ -250,7 +250,7 @@ export default function BusquedaScreen() {
                 </Col>
               </Row>
               {products.length === 0 && (
-                <MessageBox>Prodcutos no encontrados</MessageBox>
+                <MessageBox>Productos no encontrados</MessageBox>
               )}
 
               <Row>

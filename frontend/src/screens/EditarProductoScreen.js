@@ -114,7 +114,7 @@ export default function EditarProductoScreen() {
       dispatch({
         type: "UPDATE_SUCCESS",
       });
-      toast.success("Product updated successfully");
+      toast.success("Producto actualizado satisfactoriamente");
       navigate("/admin/products");
     } catch (err) {
       toast.error(getError(err));
@@ -140,7 +140,7 @@ export default function EditarProductoScreen() {
       } else {
         setImage(data.secure_url);
       }
-      toast.success("Image uploaded successfully. click Update to apply it");
+      toast.success("Imagen subida con éxito. Clic para seleccionar");
     } catch (err) {
       toast.error(getError(err));
       dispatch({ type: "UPLOAD_FAIL", payload: getError(err) });
