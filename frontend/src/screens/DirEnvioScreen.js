@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Store } from "../Store";
 import PasosCheckout from "../components/PasosCheckout";
 
-// Pnatalla de la direccion de enbio
+// Pnatalla de la direccion de envio
 export default function DirEnvioScreen() {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -37,7 +37,6 @@ export default function DirEnvioScreen() {
         city,
         postalCode,
         country,
-        location: shippingAddress.location,
       },
     });
     localStorage.setItem(
@@ -48,7 +47,6 @@ export default function DirEnvioScreen() {
         city,
         postalCode,
         country,
-        location: shippingAddress.location,
       })
     );
     navigate("/payment");

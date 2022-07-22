@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useReducer } from "react";
-import { usePayPalScriptReducer } from "@paypal/react-paypal-js";
+
 import { Helmet } from "react-helmet-async";
 import { useNavigate, useParams } from "react-router-dom";
 import Row from "react-bootstrap/Row";
@@ -64,8 +64,6 @@ export default function OrderScreen() {
       loadingPay: false,
     });
 
-  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
-
   useEffect(() => {
     const fetchOrder = async () => {
       try {
@@ -96,30 +94,8 @@ export default function OrderScreen() {
         dispatch({ type: "DELIVER_RESET" });
       }
     } else {
-      const loadPaypalScript = async () => {
-        const { data: clientId } = await axios.get("/api/keys/paypal", {
-          headers: { authorization: `Bearer ${userInfo.token}` },
-        });
-        paypalDispatch({
-          type: "resetOptions",
-          value: {
-            "client-id": clientId,
-            currency: "USD",
-          },
-        });
-        paypalDispatch({ type: "setLoadingStatus", value: "pending" });
-      };
-      loadPaypalScript();
     }
-  }, [
-    order,
-    userInfo,
-    orderId,
-    navigate,
-    paypalDispatch,
-    successPay,
-    successDeliver,
-  ]);
+  }, [order, userInfo, orderId, navigate, successPay, successDeliver]);
 
   return loading ? (
     <MsgCarga></MsgCarga>
