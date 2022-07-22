@@ -15,7 +15,7 @@ export default function MetodoPagoScreen() {
   } = state;
 
   const [paymentMethodName, setPaymentMethod] = useState(
-    paymentMethod || "PayPal"
+    paymentMethod || "Efectivo"
   );
 
   useEffect(() => {
@@ -41,20 +41,20 @@ export default function MetodoPagoScreen() {
           <div className='mb-3'>
             <Form.Check
               type='radio'
-              id='PayPal'
-              label='PayPal'
-              value='PayPal'
-              checked={paymentMethodName === "PayPal"}
+              id='Efectivo'
+              label='Efectivo al momento de la entrega'
+              value='Efectivo contraentrega'
+              checked={paymentMethodName === "Efectivo"}
               onChange={(e) => setPaymentMethod(e.target.value)}
             />
           </div>
           <div className='mb-3'>
             <Form.Check
               type='radio'
-              id='Stripe'
-              label='Stripe'
-              value='Stripe'
-              checked={paymentMethodName === "Stripe"}
+              id='transferencia'
+              label='Transferencia Bancaria'
+              value='transferencia'
+              checked={paymentMethodName === "transferencia"}
               onChange={(e) => setPaymentMethod(e.target.value)}
             />
           </div>

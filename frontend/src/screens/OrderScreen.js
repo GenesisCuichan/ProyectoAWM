@@ -1,11 +1,10 @@
 import axios from "axios";
 import React, { useContext, useEffect, useReducer } from "react";
-import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import { usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { Helmet } from "react-helmet-async";
 import { useNavigate, useParams } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
@@ -13,7 +12,6 @@ import MsgCarga from "../components/MsgCarga";
 import MessageBox from "../components/MessageBox";
 import { Store } from "../Store";
 import { getError } from "../utils";
-import { toast } from "react-toastify";
 
 // Pantalla de orden
 function reducer(state, action) {
@@ -57,63 +55,16 @@ export default function OrderScreen() {
   const { id: orderId } = params;
   const navigate = useNavigate();
 
-  const [
-    {
-      loading,
-      error,
-      order,
-      successPay,
-      loadingPay,
-      loadingDeliver,
-      successDeliver,
-    },
-    dispatch,
-  ] = useReducer(reducer, {
-    loading: true,
-    order: {},
-    error: "",
-    successPay: false,
-    loadingPay: false,
-  });
+  const [{ loading, error, order, successPay, successDeliver }, dispatch] =
+    useReducer(reducer, {
+      loading: true,
+      order: {},
+      error: "",
+      successPay: false,
+      loadingPay: false,
+    });
 
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
-
-  function createOrder(data, actions) {
-    return actions.order
-      .create({
-        purchase_units: [
-          {
-            amount: { value: order.totalPrice },
-          },
-        ],
-      })
-      .then((orderID) => {
-        return orderID;
-      });
-  }
-
-  function onApprove(data, actions) {
-    return actions.order.capture().then(async function (details) {
-      try {
-        dispatch({ type: "PAY_REQUEST" });
-        const { data } = await axios.put(
-          `/api/orders/${order._id}/pay`,
-          details,
-          {
-            headers: { authorization: `Bearer ${userInfo.token}` },
-          }
-        );
-        dispatch({ type: "PAY_SUCCESS", payload: data });
-        toast.success("Orden pagada");
-      } catch (err) {
-        dispatch({ type: "PAY_FAIL", payload: getError(err) });
-        toast.error(getError(err));
-      }
-    });
-  }
-  function onError(err) {
-    toast.error(getError(err));
-  }
 
   useEffect(() => {
     const fetchOrder = async () => {
@@ -170,24 +121,6 @@ export default function OrderScreen() {
     successDeliver,
   ]);
 
-  async function deliverOrderHandler() {
-    try {
-      dispatch({ type: "DELIVER_REQUEST" });
-      const { data } = await axios.put(
-        `/api/orders/${order._id}/deliver`,
-        {},
-        {
-          headers: { authorization: `Bearer ${userInfo.token}` },
-        }
-      );
-      dispatch({ type: "DELIVER_SUCCESS", payload: data });
-      toast.success("La orden ha sido enviada");
-    } catch (err) {
-      toast.error(getError(err));
-      dispatch({ type: "DELIVER_FAIL" });
-    }
-  }
-
   return loading ? (
     <MsgCarga></MsgCarga>
   ) : error ? (
@@ -210,19 +143,10 @@ export default function OrderScreen() {
                 {order.shippingAddress.city}, {order.shippingAddress.postalCode}
                 ,{order.shippingAddress.country}
                 &nbsp;
-                {/*{order.shippingAddress.location &&
-                  order.shippingAddress.location.lat && (
-                    <a
-                      target='_new'
-                      href={`https://maps.google.com?q=${order.shippingAddress.location.lat},${order.shippingAddress.location.lng}`}
-                    >
-                      Show On Map
-                    </a>
-                  )}*/}
               </Card.Text>
               {order.isDelivered ? (
                 <MessageBox variant='success'>
-                  Delivered at {order.deliveredAt}
+                  Enviado el {order.deliveredAt}
                 </MessageBox>
               ) : (
                 <MessageBox variant='danger'>No enviado</MessageBox>
@@ -304,32 +228,6 @@ export default function OrderScreen() {
                     </Col>
                   </Row>
                 </ListGroup.Item>
-                {!order.isPaid && (
-                  <ListGroup.Item>
-                    {isPending ? (
-                      <MsgCarga />
-                    ) : (
-                      <div>
-                        <PayPalButtons
-                          createOrder={createOrder}
-                          onApprove={onApprove}
-                          onError={onError}
-                        ></PayPalButtons>
-                      </div>
-                    )}
-                    {loadingPay && <MsgCarga></MsgCarga>}
-                  </ListGroup.Item>
-                )}
-                {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
-                  <ListGroup.Item>
-                    {loadingDeliver && <MsgCarga></MsgCarga>}
-                    <div className='d-grid'>
-                      <Button type='button' onClick={deliverOrderHandler}>
-                        Enviar pedido
-                      </Button>
-                    </div>
-                  </ListGroup.Item>
-                )}
               </ListGroup>
             </Card.Body>
           </Card>
