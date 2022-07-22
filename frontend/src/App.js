@@ -19,7 +19,7 @@ import PaymentMethodScreen from "./screens/PaymentMethodScreen";
 import RealizarPedidoScreen from "./screens/RealizarPedidoScreen";
 import OrderScreen from "./screens/OrderScreen";
 import OrderHistoryScreen from "./screens/OrderHistoryScreen";
-import ProfileScreen from "./screens/ProfileScreen";
+import PerfilUsuarioScreen from "./screens/PerfilUsuarioScreen";
 import Button from "react-bootstrap/Button";
 import { getError } from "./utils";
 import axios from "axios";
@@ -29,11 +29,10 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import DashboardScreen from "./screens/DashboardScreen";
 import AdminRutas from "./components/AdminRutas";
 import ProductListScreen from "./screens/ProductListScreen";
-import ProductEditScreen from "./screens/ProductEditScreen";
+import EditarProductoScreen from "./screens/EditarProductoScreen";
 import OrderListScreen from "./screens/OrderListScreen";
 import UserListScreen from "./screens/UserListScreen";
 import UserEditScreen from "./screens/UserEditScreen";
-import MapScreen from "./screens/MapScreen";
 import { Footer } from "./components/Footer";
 
 function App() {
@@ -180,15 +179,7 @@ function App() {
                 path='/profile'
                 element={
                   <ProtectedRoute>
-                    <ProfileScreen />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path='/map'
-                element={
-                  <ProtectedRoute>
-                    <MapScreen />
+                    <PerfilUsuarioScreen />
                   </ProtectedRoute>
                 }
               />
@@ -248,7 +239,7 @@ function App() {
                 path='/admin/product/:id'
                 element={
                   <AdminRutas>
-                    <ProductEditScreen />
+                    <EditarProductoScreen />
                   </AdminRutas>
                 }
               ></Route>
