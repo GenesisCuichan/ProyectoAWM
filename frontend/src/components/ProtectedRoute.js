@@ -8,3 +8,4 @@ export default function ProtectedRoute({ children }) {
   const { userInfo } = state;
   return userInfo ? children : <Navigate to="/signin" />;
 }
+//
