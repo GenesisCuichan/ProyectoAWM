@@ -1,9 +1,10 @@
-import React, { useEffect, useReducer, useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { getError } from "../utils";
-import { Helmet } from "react-helmet-async";
+import React, { useEffect, useReducer, useState } from "react"; //Libreria React
+//Libreria para usar React-router, permite ir navegando por las paginas
+import { Link, useNavigate, useLocation } from "react-router-dom"; 
+import axios from "axios"; // Libreria de axios
+import { toast } from "react-toastify"; // Libreri para agregar notificaciones
+import { getError } from "../utils"; // Libreria utils
+import { Helmet } from "react-helmet-async"; //
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Rating from "../components/Rating";
