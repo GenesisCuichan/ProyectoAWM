@@ -28,7 +28,7 @@ userRouter.get(
     if (user) {
       res.send(user);
     } else {
-      res.status(404).send({ message: 'Usario no encontrado' });
+      res.status(404).send({ message: 'Usario no registrado' });
     }
   })
 );
@@ -47,7 +47,7 @@ userRouter.put(
       const updatedUser = await user.save();
       res.send({ message: 'Usuario actualizado', user: updatedUser });
     } else {
-      res.status(404).send({ message: 'Usuario no encontrado ' });
+      res.status(404).send({ message: 'Usuario no registrado ' });
     }
   })
 );
@@ -67,7 +67,7 @@ userRouter.delete(
       await user.remove();
       res.send({ message: 'Usuario eliminado' });
     } else {
-      res.status(404).send({ message: 'User Not Found' });
+      res.status(404).send({ message: 'Usuario no registrado' });
     }
   })
 );
@@ -89,7 +89,7 @@ userRouter.post(
         return;
       }
     }
-    res.status(401).send({ message: 'Contraseña o correo incorrecto' });
+    res.status(401).send({ message: 'Contraseña o correo electrónico incorrecto' });
   })
 );
 
