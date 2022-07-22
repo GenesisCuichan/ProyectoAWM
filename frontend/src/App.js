@@ -23,7 +23,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import Button from "react-bootstrap/Button";
 import { getError } from "./utils";
 import axios from "axios";
-import SearchBox from "./components/SearchBox";
+import BusquedaBox from "./components/BusquedaBox";
 import SearchScreen from "./screens/SearchScreen";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DashboardScreen from "./screens/DashboardScreen";
@@ -90,7 +90,7 @@ function App() {
               </LinkContainer>
               <Navbar.Toggle aria-controls='basic-navbar-nav' />
               <Navbar.Collapse id='basic-navbar-nav'>
-                <SearchBox />
+                <BusquedaBox />
                 <Nav className='me-auto  w-100  justify-content-end'>
                   <Link to='/cart' className='nav-link'>
                     Carrito de compras
