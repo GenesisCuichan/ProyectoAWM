@@ -1,5 +1,5 @@
-import jwt from 'jsonwebtoken'; //Librería para la creación de tokens por medio del archivo JSON
-import mg from 'mailgun-js'; //Librería para el uso de correo electrónico
+import jwt from "jsonwebtoken"; //Librería para la creación de tokens por medio del archivo JSON
+import mg from "mailgun-js"; //Librería para el uso de correo electrónico
 
 //Componente Funcional para la Generación del Token
 export const generateToken = (user) => {
@@ -12,7 +12,7 @@ export const generateToken = (user) => {
     },
     process.env.JWT_SECRET,
     {
-      expiresIn: '30d',
+      expiresIn: "30d",
     }
   );
 };
@@ -26,14 +26,14 @@ export const isAuth = (req, res, next) => {
     jwt.verify(token, process.env.JWT_SECRET, (err, decode) => {
       //Excepciones
       if (err) {
-        res.status(401).send({ message: 'Invalid Token' });
+        res.status(401).send({ message: "Invalid Token" });
       } else {
         req.user = decode;
         next();
       }
     });
   } else {
-    res.status(401).send({ message: 'No Token' });
+    res.status(401).send({ message: "No Token" });
   }
 };
 
@@ -42,7 +42,7 @@ export const isAdmin = (req, res, next) => {
   if (req.user && req.user.isAdmin) {
     next();
   } else {
-    res.status(401).send({ message: 'Invalid Admin Token' });
+    res.status(401).send({ message: "Invalid Admin Token" });
   }
 };
 
@@ -53,7 +53,7 @@ export const mailgun = () =>
     domain: process.env.MAILGUN_DOMIAN,
   });
 
-  //Función para generar la orden de pago al correo electrónico
+//Función para generar la orden de pago al correo electrónico
 export const payOrderEmailTemplate = (order) => {
   return `<h1>Thanks for shopping with us</h1>
   <p>
@@ -78,7 +78,7 @@ export const payOrderEmailTemplate = (order) => {
     </tr>
   `
     )
-    .join('\n')}
+    .join("\n")}
   </tbody>
   <tfoot>
   <tr>

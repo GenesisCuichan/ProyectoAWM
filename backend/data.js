@@ -1,4 +1,4 @@
-import bcrypt from "bcryptjs"; //Cifrado Blowfish
+import bcrypt from "bcryptjs"; //Cifrado Blowfish para cifrar contraseñas
 
 //Variable para cargar los datos
 const data = {

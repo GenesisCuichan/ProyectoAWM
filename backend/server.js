@@ -28,10 +28,6 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//Petición de la API por medio de PayPal
-app.get("/api/keys/paypal", (req, res) => {
-  res.send(process.env.PAYPAL_CLIENT_ID || "sb");
-});
 //Petición de la API por medio de Google
 app.get("/api/keys/google", (req, res) => {
   res.send({ key: process.env.GOOGLE_API_KEY || "" });
